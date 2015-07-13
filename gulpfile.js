@@ -32,9 +32,13 @@ gulp.task('watch', function () {
  * Custom setting
  * */
 var jade = require('gulp-jade');
+var data = require('gulp-data');
 
 gulp.task('jade', function () {
     gulp.src(dirs.src + '/jade/*.jade')
+        .pipe(data(function(file) {
+            return require('./'  + dirs.src +  '/json/const.json');
+        }))
         .pipe(jade({
             pretty: true
         }))
